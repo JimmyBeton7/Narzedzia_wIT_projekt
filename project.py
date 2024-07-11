@@ -24,7 +24,16 @@ def load_json(file_path):
         print("File not found")
         sys.exit(1)
 
+def save_json(data, file_path):
+    try:
+        with open(file_path, 'w') as file:
+            json.dump(data, file, indent=4)
+            print("Data saved to JSON file successfully")
+    except IOError as e:
+        print(f"Error saving JSON: {e}")
+        sys.exit(1)
+
 if __name__ == "__main__":
     input_file, output_file = parse_arguments()
     data = load_json(input_file)
-    print(data)
+    save_json(data, output_file)
